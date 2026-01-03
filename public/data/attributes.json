@@ -1,0 +1,35 @@
+{
+  "attributes": {
+    "celltype": {
+      "names": [
+        "neural_crest",
+        "central_nervous_system",
+        "intermediate_mesoderm",
+        "paraxial_mesoderm",
+        "periderm",
+        "mesenchyme",
+        "hematopoietic_system",
+        "lateral_mesoderm",
+        "endoderm",
+        "notochord"
+      ],
+      "count": 10
+    },
+    "timepoint": {
+      "names": [
+        "3dpf",
+        "16hpf",
+        "12hpf",
+        "2dpf",
+        "14hpf",
+        "5dpf",
+        "10dpf",
+        "19hpf",
+        "24hpf",
+        "10hpf"
+      ],
+      "count": 10
+    }
+  },
+  "default_attribute": "celltype"
+}
