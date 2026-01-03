@@ -177,6 +177,12 @@ class LumapVisualizer {
             this.populateAttributeDropdown();
             if (this.cellTypes && this.cellTypeNames) {
                 this.populateCellTypeDropdown();
+            } else {
+                const highlightDropdown = document.getElementById('highlight-celltype');
+                if (highlightDropdown) {
+                    highlightDropdown.disabled = true;
+                    highlightDropdown.value = '';
+                }
             }
 
             const geometry = new THREE.BufferGeometry();
@@ -505,16 +511,23 @@ class LumapVisualizer {
 
     populateAttributeDropdown() {
         const dropdown = document.getElementById('color-by-attribute');
-        if (!dropdown || !this.attributes) return;
+        if (!dropdown) return;
 
         dropdown.innerHTML = '';
 
-        // Add "None" option for white points
+        // Always show None option
         const noneOption = document.createElement('option');
         noneOption.value = 'none';
         noneOption.textContent = 'None (white)';
         dropdown.appendChild(noneOption);
 
+        if (!this.attributes) {
+            dropdown.value = 'none';
+            dropdown.disabled = true;
+            return;
+        }
+
+        dropdown.disabled = false;
         const attrNames = Object.keys(this.attributes.attributes);
 
         attrNames.forEach(name => {

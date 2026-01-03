@@ -1,6 +1,6 @@
 # lumap
 
-**Luminous UMAP** — Fast, interactive 3D point cloud visualizations with bloom effects. This repo now only contains the web viewer (Vite + Three.js). The previous Python CLI/package is not shipped here.
+**Luminous UMAP** — Fast, interactive 3D point cloud visualizations with bloom effects. This repo ships the web viewer (Vite + Three.js) plus a minimal local Python CLI (not published to PyPI).
 
 ## Quick Start (Web Viewer)
 
@@ -55,8 +55,25 @@ lumap/
 
 ## Notes
 
-- There is no published `lumap` Python package or CLI in this repo. Use your own preprocessing to generate the `public/data` binaries.
+- The Python CLI is bundled locally only (not published to PyPI). Install with `pip install -e .`.
 - If you regenerate data, ensure the file names and formats above match exactly.
+
+## Minimal CLI (convert + serve)
+
+We ship a tiny Python CLI for local use:
+
+```bash
+pip install -e .           # from repo root (uses pyproject)
+lumap convert mydata.h5ad        # writes binaries to ./lumap_bundle by default (cwd)
+lumap serve lumap_bundle --open  # serves a specific bundle via Vite dev server
+lumap zebra --open               # serve bundled zebrafish sample in public/data
+```
+
+Notes:
+- Requires Python 3.9+ and Node 18+ with npm on PATH.
+- `convert` expects a categorical obs column for colors; use `--color` and/or `--attribute` to choose columns. Use `--out` to write elsewhere.
+- If you omit `--color/--attribute`, the viewer writes white points only (no attributes).
+- `serve` runs `npm run dev` from this repo. Stop with Ctrl+C. Pass the bundle dir as a positional arg.
 
 ## Inspired By
 

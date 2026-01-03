@@ -31,6 +31,7 @@ env/
 venv/
 ENV/
 .venv
+*.egg-info/
 
 # OS
 .DS_Store
